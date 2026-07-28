@@ -12,14 +12,15 @@ import { getActor } from './actor';
 
 async function takeScreenshot(stepId: string, meta: ElementMeta): Promise<string | undefined> {
   try {
-    const dataUrl = await captureVisibleTab('jpeg', 90);
+    // PNG keeps UI text sharp for PDF export (JPEG at 90 softens fine chrome).
+    const dataUrl = await captureVisibleTab('png');
     const blob = await fetch(dataUrl).then((r) => r.blob());
     const img = await createImageBitmap(blob);
     const screenshot: Screenshot = {
       id: crypto.randomUUID(),
       stepId,
       blob,
-      mimeType: 'image/jpeg',
+      mimeType: 'image/png',
       width: img.width,
       height: img.height,
       bounds: { x: meta.rect.x, y: meta.rect.y, width: meta.rect.width, height: meta.rect.height },
