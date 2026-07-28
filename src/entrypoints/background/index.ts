@@ -2,8 +2,16 @@ import { browser, defineBackground, i18n } from '#imports';
 import { generateGuideTitle } from '@/core/capture/ai/title';
 import { advanceSession, cancelSession, completeSession, getSession, startSession } from '@/core/guideme/session';
 import { createGuide, getGuideDomain, getStepsForGuide, updateGuideTitle } from '@/core/guides/service';
-import { registerProcessProExternalMessaging } from '@/core/processpro/external-messaging';
-import { getActiveTab, localStorage, sendMessageToTab, setSidePanelBehavior, updateTab } from '@/lib/browser-api';
+import { registerProcessProBackgroundBridge } from '@/core/processpro/background-bridge';
+import { registerProcessProCaptureApi } from '@/core/processpro/capture-api';
+import {
+  getActiveTab,
+  localStorage,
+  openSidebar,
+  sendMessageToTab,
+  setSidePanelBehavior,
+  updateTab,
+} from '@/lib/browser-api';
 import { logger } from '@/lib/logger';
 import { onMessage } from '@/lib/messaging';
 import { broadcastStateToPanel, setupPortListener } from '@/lib/port';
@@ -54,7 +62,7 @@ async function generateTitleInBackground(guideId: string) {
 
 export default defineBackground(() => {
   logger.info('Background service worker started');
-  registerProcessProExternalMessaging();
+  registerProcessProBackgroundBridge();
 
   browser.runtime.onInstalled.addListener(async (details) => {
     if (details.reason !== 'install') return;
@@ -109,15 +117,10 @@ export default defineBackground(() => {
     getActor().subscribe(() => broadcastStateToPanel(getStateUpdate()));
   });
 
-  onMessage('getState', async () => {
-    await waitUntilReady();
-    return getStateUpdate();
-  });
-
-  onMessage('startRecording', async ({ data }) => {
+  async function startRecordingInternal(url: string) {
     await waitUntilReady();
     const actor = getActor();
-    actor.send({ type: 'START_RECORDING', url: data.url });
+    actor.send({ type: 'START_RECORDING', url });
     const guideId = actor.getSnapshot().context.currentGuideId!;
 
     await createGuide(guideId);
@@ -127,9 +130,9 @@ export default defineBackground(() => {
 
     await broadcastStartCapture(guideId);
     return { guideId };
-  });
+  }
 
-  onMessage('stopRecording', async () => {
+  async function stopRecordingInternal() {
     await waitUntilReady();
     const actor = getActor();
     const guideId = actor.getSnapshot().context.currentGuideId;
@@ -139,7 +142,37 @@ export default defineBackground(() => {
     if (guideId) generateTitleInBackground(guideId);
 
     return { success: true, guideId: guideId ?? undefined };
+  }
+
+  // Direct API for ProcessPro bridge — avoids nested runtime.sendMessage in the SW.
+  registerProcessProCaptureApi({
+    getState: async () => {
+      await waitUntilReady();
+      return getStateUpdate();
+    },
+    startRecording: startRecordingInternal,
+    stopRecording: stopRecordingInternal,
+    openSidebar: () => {
+      try {
+        openSidebar();
+      } catch {
+        // Side panel may be unavailable; recording still proceeds.
+      }
+    },
+    resolveDefaultUrl: async () => {
+      const tab = await getActiveTab();
+      return tab?.url || 'about:blank';
+    },
   });
+
+  onMessage('getState', async () => {
+    await waitUntilReady();
+    return getStateUpdate();
+  });
+
+  onMessage('startRecording', async ({ data }) => startRecordingInternal(data.url));
+
+  onMessage('stopRecording', async () => stopRecordingInternal());
 
   onMessage('enterBlurMode', async () => {
     await waitUntilReady();

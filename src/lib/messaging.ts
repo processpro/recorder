@@ -89,6 +89,25 @@ export interface ExitBlurModeResponse {
   exited: boolean;
 }
 
+/** ProcessPro Settings → background recording bridge (avoids raw runtime payloads). */
+export interface ProcessProCommandData {
+  command: 'start' | 'stop' | 'status';
+  requestId?: string;
+  url?: string;
+}
+
+export interface ProcessProCommandResponse {
+  ok: boolean;
+  type: string;
+  requestId?: string;
+  guideId?: string | null;
+  stepCount?: number;
+  state?: string;
+  error?: string;
+  version?: string;
+  capabilities?: readonly string[];
+}
+
 interface MimikProtocol {
   getState(): GetStateResponse;
   startRecording(data: StartRecordingData): StartRecordingResponse;
@@ -102,6 +121,7 @@ interface MimikProtocol {
   guideMePrev(data: GuideMe_PrevData): GuideMe_PrevResponse;
   enterBlurMode(): EnterBlurModeResponse;
   exitBlurMode(): ExitBlurModeResponse;
+  processProCommand(data: ProcessProCommandData): ProcessProCommandResponse;
 }
 
 export const { sendMessage, onMessage } = defineExtensionMessaging<MimikProtocol>();

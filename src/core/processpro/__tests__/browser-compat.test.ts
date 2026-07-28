@@ -20,7 +20,7 @@ describe('Chrome and Edge compatibility', () => {
       source: EXTENSION_MESSAGE_SOURCE,
       type: PONG_MESSAGE_TYPE,
       requestId: 'compat',
-      capabilities: ['detection'],
+      capabilities: ['detection', 'recording'],
     });
     expect(typeof pong.version).toBe('string');
   });

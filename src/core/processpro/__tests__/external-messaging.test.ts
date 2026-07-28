@@ -1,6 +1,24 @@
 import { describe, expect, it, vi } from 'vitest';
 import { createProcessProExternalMessageHandler } from '../external-messaging';
-import { EXTENSION_MESSAGE_SOURCE, PING_MESSAGE_TYPE, PONG_MESSAGE_TYPE, WEB_MESSAGE_SOURCE } from '../protocol';
+import {
+  EXTENSION_MESSAGE_SOURCE,
+  PING_MESSAGE_TYPE,
+  PONG_MESSAGE_TYPE,
+  START_MESSAGE_TYPE,
+  STARTED_MESSAGE_TYPE,
+  WEB_MESSAGE_SOURCE,
+} from '../protocol';
+
+vi.mock('../recording-commands', () => ({
+  executeProcessProRecordingCommand: vi.fn(async () => ({
+    ok: true,
+    type: STARTED_MESSAGE_TYPE,
+    requestId: 'ext-start',
+    guideId: 'guide-9',
+    stepCount: 0,
+    state: 'RECORDING',
+  })),
+}));
 
 describe('createProcessProExternalMessageHandler', () => {
   it('answers external ping from authorised ProcessPro origin', () => {
@@ -20,7 +38,7 @@ describe('createProcessProExternalMessageHandler', () => {
         type: PONG_MESSAGE_TYPE,
         requestId: 'ext-1',
         version: '1.0.0',
-        capabilities: ['detection'],
+        capabilities: ['detection', 'recording'],
       }),
     );
   });
@@ -39,12 +57,25 @@ describe('createProcessProExternalMessageHandler', () => {
     expect(sendResponse).not.toHaveBeenCalled();
   });
 
-  it('rejects non-ping external messages', () => {
+  it('handles external start recording command', () => {
     const handler = createProcessProExternalMessageHandler();
     const sendResponse = vi.fn();
 
     const handled = handler(
-      { type: 'START_RECORDING' },
+      { type: START_MESSAGE_TYPE, source: WEB_MESSAGE_SOURCE, requestId: 'ext-start' },
+      { origin: 'https://demo.processpro.io', id: 'page', url: 'https://demo.processpro.io/settings' },
+      sendResponse,
+    );
+
+    expect(handled).toBe(true);
+  });
+
+  it('rejects unrelated external messages', () => {
+    const handler = createProcessProExternalMessageHandler();
+    const sendResponse = vi.fn();
+
+    const handled = handler(
+      { type: 'UNKNOWN_COMMAND' },
       { origin: 'https://demo.processpro.io', id: 'page' },
       sendResponse,
     );

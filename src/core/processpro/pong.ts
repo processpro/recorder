@@ -1,6 +1,6 @@
 import {
   EXTENSION_MESSAGE_SOURCE,
-  PHASE1_CAPABILITIES,
+  PHASE2_CAPABILITIES,
   PONG_MESSAGE_TYPE,
   type ProcessProPongMessage,
 } from './protocol';
@@ -15,7 +15,7 @@ export function buildProcessProPong(requestId?: string): ProcessProPongMessage {
     source: EXTENSION_MESSAGE_SOURCE,
     type: PONG_MESSAGE_TYPE,
     version: getExtensionVersion(),
-    capabilities: [...PHASE1_CAPABILITIES],
+    capabilities: [...PHASE2_CAPABILITIES],
   };
 
   if (typeof requestId === 'string' && requestId.trim()) {
