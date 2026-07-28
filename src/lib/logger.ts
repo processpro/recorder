@@ -12,7 +12,7 @@ const STYLES = {
 type LogFn = (...args: unknown[]) => void;
 
 function bind(level: 'log' | 'info' | 'warn' | 'error', style: string): LogFn {
-  return console[level].bind(console, `%c mimik `, style);
+  return console[level].bind(console, `%c processpro-recorder `, style);
 }
 
 const silent: LogFn = () => {};

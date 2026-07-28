@@ -5,6 +5,7 @@ import { CaptureSession } from '@/core/capture/session';
 import { updateUrl } from '@/core/capture/spa-nav';
 import { showStartNotification } from '@/core/capture/start-notification';
 import { GuideMeController } from '@/core/guideme/content';
+import { startProcessProDetection } from '@/core/processpro/detection';
 import { logger } from '@/lib/logger';
 import { TabMessage } from '@/lib/tab-messages';
 
@@ -78,12 +79,14 @@ export default defineContentScript({
     const guideMe = new GuideMeController();
     const blurManager = new BlurManager();
     const handleTabMessage = createTabMessageHandler(session, guideMe, blurManager);
+    const processProDetection = startProcessProDetection();
 
     document.addEventListener(CLEANUP_EVENT, () => {
       session.dispose();
       guideMe.dispose();
       browser.runtime.onMessage.removeListener(handleTabMessage);
       blurManager.stop();
+      processProDetection?.dispose();
     });
 
     window.addEventListener('beforeunload', () => session.stop());

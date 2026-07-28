@@ -2,8 +2,8 @@ meta:
   locale: pt-BR
 
 app:
-  name: Mimik
-  store_title: "Mimik: guias passo a passo, tutoriais e prints"
+  name: ProcessPro Recorder
+  store_title: "ProcessPro Recorder: guias passo a passo, tutoriais e prints"
   description: Capture qualquer tarefa do navegador em um guia passo a passo com prints. Local, código aberto, com sua própria chave de IA.
 
 common:
@@ -88,8 +88,8 @@ settings:
   smartBlur: Desfoque inteligente
   privacyNotice: Sua chave API fica salva no navegador e só é enviada pro provedor de IA que você escolher. Nada mais sai daqui.
   bugReport: "Achou um bug? Reporta no GitHub"
-  starCtaTitle: "Curtiu o Mimik?"
-  starCtaMessage: Uma estrela no GitHub ajuda outras pessoas a descobrir o Mimik e nos dá aquela motivação!
+  starCtaTitle: "Curtiu o ProcessPro Recorder?"
+  starCtaMessage: Uma estrela no GitHub ajuda outras pessoas a descobrir o ProcessPro Recorder e nos dá aquela motivação!
   starOnGithub: Dar estrela no GitHub
 
 blurPresets:
@@ -168,7 +168,7 @@ exportMenu:
 
 onboarding:
   welcomeBadge: Bem-vindo
-  welcomeTitle: "Mimik instalado!"
+  welcomeTitle: "ProcessPro Recorder instalado!"
   welcomeMessage: "Em poucos passos você vai poder capturar fluxos de trabalho e gerar guias automáticos. Sem conta, sem cadastro \u2014 tudo fica no seu navegador."
   getStarted: Bora começar
   aiStepLabel: Passo 1 de 3
@@ -183,21 +183,21 @@ onboarding:
   notEnabled: Não ativado
   categoriesProtected: "$1 categorias protegidas"
   pinStepLabel: Passo 3 de 3
-  pinTitle: Fixa o Mimik
-  pinMessage: Fixa a extensão na barra pra ter acesso rápido. Clica no ícone de quebra-cabeça no Chrome e fixa o Mimik.
+  pinTitle: Fixa o ProcessPro Recorder
+  pinMessage: Fixa a extensão na barra pra ter acesso rápido. Clica no ícone de quebra-cabeça no Chrome e fixa o ProcessPro Recorder.
   pinStep1Title: Clica no ícone de quebra-cabeça
   pinStep1Sub: Lá em cima à direita na barra do navegador
-  pinStep2Title: Acha o Mimik
+  pinStep2Title: Acha o ProcessPro Recorder
   pinStep2Sub: No menu de extensões
   pinStep3Title: Clica no pin
-  pinStep3Sub: O Mimik vai aparecer na sua barra
-  pinScreenshotAlt: Fixar extensão Mimik
+  pinStep3Sub: O ProcessPro Recorder vai aparecer na sua barra
+  pinScreenshotAlt: Fixar extensão ProcessPro Recorder
   doneTitle: "Tudo pronto!"
-  doneMessage: "O Mimik tá pronto pra capturar. Clica em \"Começar a capturar\" na extensão pra gravar seu primeiro guia."
+  doneMessage: "O ProcessPro Recorder tá pronto pra capturar. Clica em \"Começar a capturar\" na extensão pra gravar seu primeiro guia."
   featureAutoCapture: Captura automática
   featureAIDescriptions: Descrições com IA
   featureSmartBlur: Desfoque inteligente
-  openMimik: Abrir Mimik
+  openMimik: Abrir ProcessPro Recorder
 
 steps:
   pressKey: "Pressionar $1 em $2"

@@ -2,6 +2,7 @@ import { browser, defineBackground, i18n } from '#imports';
 import { generateGuideTitle } from '@/core/capture/ai/title';
 import { advanceSession, cancelSession, completeSession, getSession, startSession } from '@/core/guideme/session';
 import { createGuide, getGuideDomain, getStepsForGuide, updateGuideTitle } from '@/core/guides/service';
+import { registerProcessProExternalMessaging } from '@/core/processpro/external-messaging';
 import { getActiveTab, localStorage, sendMessageToTab, setSidePanelBehavior, updateTab } from '@/lib/browser-api';
 import { logger } from '@/lib/logger';
 import { onMessage } from '@/lib/messaging';
@@ -53,6 +54,7 @@ async function generateTitleInBackground(guideId: string) {
 
 export default defineBackground(() => {
   logger.info('Background service worker started');
+  registerProcessProExternalMessaging();
 
   browser.runtime.onInstalled.addListener(async (details) => {
     if (details.reason !== 'install') return;

@@ -2,9 +2,9 @@ meta:
   locale: en
 
 app:
-  name: Mimik
-  store_title: "Mimik: Step-by-Step Guides, Tutorials & Screenshots"
-  description: Auto-capture any browser workflow into a step-by-step guide with screenshots. Local-first, open source, bring your own AI key.
+  name: ProcessPro Recorder
+  store_title: "ProcessPro Recorder: Step-by-Step Guides, Tutorials & Screenshots"
+  description: Auto-capture any browser workflow into a step-by-step guide with screenshots. Local-first, bring your own AI key.
 
 common:
   loading: Loading...
@@ -89,7 +89,7 @@ settings:
   privacyNotice: Your API key is stored locally and only sent to the selected AI provider. No data leaves your browser otherwise.
   bugReport: "Found a bug? Report it on GitHub"
   starCtaTitle: "Like what you see?"
-  starCtaMessage: A GitHub star helps others find Mimik and keeps us motivated!
+  starCtaMessage: A GitHub star helps others find ProcessPro Recorder and keeps us motivated!
   starOnGithub: Star on GitHub
 
 blurPresets:
@@ -168,7 +168,7 @@ exportMenu:
 
 onboarding:
   welcomeBadge: Welcome
-  welcomeTitle: "You've successfully installed Mimik!"
+  welcomeTitle: "You've successfully installed ProcessPro Recorder!"
   welcomeMessage: "With just a few steps, you'll be ready to auto-capture browser workflows and generate step-by-step guides. No account needed \u2014 everything stays in your browser."
   getStarted: Get started
   aiStepLabel: Step 1 of 3
@@ -183,21 +183,21 @@ onboarding:
   notEnabled: Not enabled
   categoriesProtected: "$1 categories protected"
   pinStepLabel: Step 3 of 3
-  pinTitle: Pin Mimik
-  pinMessage: Pin the extension to your toolbar for quick access. Click the puzzle icon in Chrome, then pin Mimik.
+  pinTitle: Pin ProcessPro Recorder
+  pinMessage: Pin the extension to your toolbar for quick access. Click the puzzle icon in Chrome, then pin ProcessPro Recorder.
   pinStep1Title: Click the puzzle icon
   pinStep1Sub: In the top-right of your browser toolbar
-  pinStep2Title: Find Mimik
+  pinStep2Title: Find ProcessPro Recorder
   pinStep2Sub: In the extensions dropdown
   pinStep3Title: Click the pin icon
-  pinStep3Sub: Mimik will appear in your toolbar
-  pinScreenshotAlt: Pin Mimik extension
+  pinStep3Sub: ProcessPro Recorder will appear in your toolbar
+  pinScreenshotAlt: Pin ProcessPro Recorder extension
   doneTitle: "You're all set!"
-  doneMessage: "Mimik is ready to capture your workflows. Click \"Start Capture\" in the extension to record your first guide."
+  doneMessage: "ProcessPro Recorder is ready to capture your workflows. Click \"Start Capture\" in the extension to record your first guide."
   featureAutoCapture: Auto-capture
   featureAIDescriptions: AI descriptions
   featureSmartBlur: Smart blur
-  openMimik: Open Mimik
+  openMimik: Open ProcessPro Recorder
 
 steps:
   pressKey: "Press $1 on $2"

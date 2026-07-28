@@ -1,5 +1,6 @@
 import { defineConfig } from "wxt";
 import tailwindcss from "@tailwindcss/vite";
+import { getExternallyConnectableMatches } from "./src/core/processpro/origins";
 
 export default defineConfig({
   modules: ["@wxt-dev/module-react", "@wxt-dev/i18n/module"],
@@ -34,8 +35,9 @@ export default defineConfig({
       }
     },
   },
-  manifest: ({ browser }) => {
+  manifest: ({ browser, mode, command }) => {
     const isFirefox = browser === 'firefox';
+    const includeDevOrigins = command === 'serve' || mode === 'development';
     return {
       name: "__MSG_app_store_title__",
       description: "__MSG_app_description__",
@@ -52,6 +54,14 @@ export default defineConfig({
       ...(isFirefox
         ? { optional_host_permissions: ["<all_urls>"] }
         : { host_permissions: ["<all_urls>"], minimum_chrome_version: "118" }),
+      // Chromium only — ProcessPro may ping via chrome.runtime.sendMessage(extensionId).
+      ...(!isFirefox
+        ? {
+            externally_connectable: {
+              matches: getExternallyConnectableMatches(includeDevOrigins),
+            },
+          }
+        : {}),
       icons: {
         16: 'icon16.png',
         32: 'icon32.png',
@@ -64,7 +74,7 @@ export default defineConfig({
             sidebar_action: {
               default_panel: "sidepanel.html",
               default_icon: "icon32.png",
-              default_title: "Mimik",
+              default_title: "ProcessPro Recorder",
               open_at_install: false,
             },
             browser_specific_settings: {

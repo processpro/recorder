@@ -63,7 +63,11 @@ vi.mock("#imports", () => ({
       getUILanguage: () => "en-US",
     },
     storage: { local: { get: vi.fn(), set: vi.fn(), onChanged: { addListener: vi.fn(), removeListener: vi.fn() } } },
-    runtime: { getManifest: () => ({ manifest_version: 3, name: "Mimik", version: "1.0.0" }) },
+    runtime: {
+      getManifest: () => ({ manifest_version: 3, name: "ProcessPro Recorder", version: "1.0.0" }),
+      onMessageExternal: { addListener: vi.fn(), removeListener: vi.fn() },
+      id: "test-extension-id",
+    },
     tabs: {},
   },
   defineBackground: vi.fn(),
@@ -85,7 +89,7 @@ vi.mock("wxt/testing", async () => {
         ...actual.fakeBrowser.runtime,
         getManifest: () => ({
           manifest_version: 3,
-          name: "Mimik",
+          name: "ProcessPro Recorder",
           version: "1.0.0",
           description: "Test manifest",
         }),
