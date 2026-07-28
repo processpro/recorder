@@ -9,7 +9,7 @@ describe('buildProcessProPong', () => {
     expect(pong.source).toBe(EXTENSION_MESSAGE_SOURCE);
     expect(pong.type).toBe(PONG_MESSAGE_TYPE);
     expect(pong.version).toBe('1.0.0'); // from vitest.setup mock manifest
-    expect(pong.capabilities).toEqual(['detection', 'recording']);
+    expect(pong.capabilities).toEqual(['detection', 'recording', 'export']);
     expect(pong.capabilities).toEqual([...PHASE1_CAPABILITIES]);
     expect(pong.requestId).toBeUndefined();
   });
@@ -21,11 +21,12 @@ describe('buildProcessProPong', () => {
     expect(pong.version).toBeTruthy();
   });
 
-  it('advertises detection and recording only', () => {
+  it('advertises detection, recording, and export only', () => {
     const pong = buildProcessProPong();
 
     expect(pong.capabilities).toContain('detection');
     expect(pong.capabilities).toContain('recording');
+    expect(pong.capabilities).toContain('export');
     expect(pong.capabilities).not.toContain('screenshots');
     expect(pong.capabilities).not.toContain('automaticUpload');
     expect(Array.isArray(pong.capabilities)).toBe(true);

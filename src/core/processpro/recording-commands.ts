@@ -1,7 +1,9 @@
 import { logger } from '@/lib/logger';
 import { getProcessProCaptureApi } from './capture-api';
+import { exportGuideForProcessPro } from './export-guide';
 import {
   ERROR_MESSAGE_TYPE,
+  EXPORTED_MESSAGE_TYPE,
   EXTENSION_MESSAGE_SOURCE,
   type ProcessProCommandResult,
   STARTED_MESSAGE_TYPE,
@@ -10,20 +12,52 @@ import {
 } from './protocol';
 import { getExtensionVersion } from './version';
 
-export type ProcessProCommandName = 'start' | 'stop' | 'status';
+export type ProcessProCommandName = 'start' | 'stop' | 'status' | 'export';
 
 /**
- * Executes a ProcessPro recording command against the Mimik capture pipeline.
+ * Executes a ProcessPro recording/export command against the Mimik capture pipeline.
  * Prefer a background-registered capture API (no nested runtime messaging).
  */
 export async function executeProcessProRecordingCommand(
   command: ProcessProCommandName,
-  options?: { url?: string; requestId?: string },
+  options?: { url?: string; requestId?: string; guideId?: string },
 ): Promise<ProcessProCommandResult> {
   const requestId = options?.requestId;
   const api = getProcessProCaptureApi();
 
   try {
+    if (command === 'export') {
+      const guideId = options?.guideId?.trim();
+      if (!guideId) {
+        return {
+          ok: false,
+          type: ERROR_MESSAGE_TYPE,
+          requestId,
+          error: 'guideId is required to export a recording',
+        };
+      }
+
+      const guide = await exportGuideForProcessPro(guideId);
+      if (!guide) {
+        return {
+          ok: false,
+          type: ERROR_MESSAGE_TYPE,
+          requestId,
+          error: 'Recording not found in the extension',
+        };
+      }
+
+      return {
+        ok: true,
+        type: EXPORTED_MESSAGE_TYPE,
+        requestId,
+        guideId: guide.id,
+        stepCount: guide.stepCount,
+        guide,
+        version: getExtensionVersion(),
+      };
+    }
+
     if (command === 'status') {
       const state = await api.getState();
       return {
@@ -109,6 +143,7 @@ export function toProcessProPageResponse(result: ProcessProCommandResult): Recor
   if (result.state !== undefined) payload.state = result.state;
   if (result.error !== undefined) payload.error = result.error;
   if (result.version !== undefined) payload.version = result.version;
+  if (result.guide !== undefined) payload.guide = result.guide;
 
   return payload;
 }

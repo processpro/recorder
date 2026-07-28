@@ -38,6 +38,12 @@ export const STATUS_RESULT_MESSAGE_TYPE = 'PROCESS_PRO_RECORDER_STATUS_RESULT';
 /** Error response. */
 export const ERROR_MESSAGE_TYPE = 'PROCESS_PRO_RECORDER_ERROR';
 
+/** Export / get-guide request from ProcessPro. */
+export const EXPORT_MESSAGE_TYPE = 'PROCESS_PRO_RECORDER_EXPORT';
+
+/** Export / get-guide response. */
+export const EXPORTED_MESSAGE_TYPE = 'PROCESS_PRO_RECORDER_EXPORTED';
+
 /**
  * DOM attribute ProcessPro reads on `<html>` / `<body>` for installed version.
  */
@@ -53,13 +59,15 @@ export const DOM_MARKER_ELEMENT_ID = 'processpro-recorder-extension';
 export const INTERNAL_CHANNEL = 'processpro';
 
 /**
- * Phase 2 capabilities — ProcessPro expects `Array.isArray(capabilities)`.
- * Upload / screenshots hand-off are not advertised yet.
+ * Phase 3 capabilities — ProcessPro expects `Array.isArray(capabilities)`.
  */
-export const PHASE2_CAPABILITIES = ['detection', 'recording'] as const;
+export const PHASE3_CAPABILITIES = ['detection', 'recording', 'export'] as const;
 
-/** @deprecated Use PHASE2_CAPABILITIES */
-export const PHASE1_CAPABILITIES = PHASE2_CAPABILITIES;
+/** @deprecated Use PHASE3_CAPABILITIES */
+export const PHASE2_CAPABILITIES = PHASE3_CAPABILITIES;
+
+/** @deprecated Use PHASE3_CAPABILITIES */
+export const PHASE1_CAPABILITIES = PHASE3_CAPABILITIES;
 
 export type ProcessProPingMessage = {
   source: typeof WEB_MESSAGE_SOURCE;
@@ -78,7 +86,8 @@ export type ProcessProPongMessage = {
 export type ProcessProRecordingCommandType =
   | typeof START_MESSAGE_TYPE
   | typeof STOP_MESSAGE_TYPE
-  | typeof STATUS_MESSAGE_TYPE;
+  | typeof STATUS_MESSAGE_TYPE
+  | typeof EXPORT_MESSAGE_TYPE;
 
 export type ProcessProRecordingCommand = {
   source: typeof WEB_MESSAGE_SOURCE;
@@ -86,6 +95,29 @@ export type ProcessProRecordingCommand = {
   requestId?: string;
   /** Optional start URL; defaults to the ProcessPro page URL. */
   url?: string;
+  /** Required for export — guide id returned from stop/start. */
+  guideId?: string;
+};
+
+export type ProcessProExportedStepPayload = {
+  id: string;
+  index: number;
+  description: string;
+  action: string;
+  url: string;
+  imageDataUrl?: string;
+  mimeType?: string;
+  width?: number;
+  height?: number;
+};
+
+export type ProcessProExportedGuidePayload = {
+  id: string;
+  title: string;
+  createdAt: number;
+  updatedAt: number;
+  stepCount: number;
+  steps: ProcessProExportedStepPayload[];
 };
 
 export type ProcessProCommandResult = {
@@ -98,4 +130,6 @@ export type ProcessProCommandResult = {
   error?: string;
   version?: string;
   capabilities?: readonly string[];
+  /** Present on successful export. */
+  guide?: ProcessProExportedGuidePayload;
 };

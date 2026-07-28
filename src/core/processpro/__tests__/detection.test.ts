@@ -41,7 +41,7 @@ describe('handleProcessProWindowMessage', () => {
         source: EXTENSION_MESSAGE_SOURCE,
         type: PONG_MESSAGE_TYPE,
         version: '1.0.0',
-        capabilities: ['detection', 'recording'],
+        capabilities: ['detection', 'recording', 'export'],
         requestId: 'unique-request-id',
       },
       'https://demo.processpro.io',

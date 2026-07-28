@@ -91,9 +91,10 @@ export interface ExitBlurModeResponse {
 
 /** ProcessPro Settings → background recording bridge (avoids raw runtime payloads). */
 export interface ProcessProCommandData {
-  command: 'start' | 'stop' | 'status';
+  command: 'start' | 'stop' | 'status' | 'export';
   requestId?: string;
   url?: string;
+  guideId?: string;
 }
 
 export interface ProcessProCommandResponse {
@@ -106,6 +107,24 @@ export interface ProcessProCommandResponse {
   error?: string;
   version?: string;
   capabilities?: readonly string[];
+  guide?: {
+    id: string;
+    title: string;
+    createdAt: number;
+    updatedAt: number;
+    stepCount: number;
+    steps: Array<{
+      id: string;
+      index: number;
+      description: string;
+      action: string;
+      url: string;
+      imageDataUrl?: string;
+      mimeType?: string;
+      width?: number;
+      height?: number;
+    }>;
+  };
 }
 
 interface MimikProtocol {

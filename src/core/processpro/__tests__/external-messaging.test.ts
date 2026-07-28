@@ -38,7 +38,7 @@ describe('createProcessProExternalMessageHandler', () => {
         type: PONG_MESSAGE_TYPE,
         requestId: 'ext-1',
         version: '1.0.0',
-        capabilities: ['detection', 'recording'],
+        capabilities: ['detection', 'recording', 'export'],
       }),
     );
   });

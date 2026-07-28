@@ -99,6 +99,16 @@ describe('executeProcessProRecordingCommand', () => {
       error: 'capture blocked',
     });
   });
+
+  it('requires guideId for export', async () => {
+    const result = await executeProcessProRecordingCommand('export', { requestId: 'e1' });
+
+    expect(result).toMatchObject({
+      ok: false,
+      type: ERROR_MESSAGE_TYPE,
+      error: 'guideId is required to export a recording',
+    });
+  });
 });
 
 describe('toProcessProPageResponse', () => {

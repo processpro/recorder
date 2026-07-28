@@ -5,6 +5,7 @@ import { onMessage } from '@/lib/messaging';
 import { isAuthorisedProcessProOrigin } from './origins';
 import { buildProcessProPong } from './pong';
 import {
+  EXPORT_MESSAGE_TYPE,
   PING_MESSAGE_TYPE,
   START_MESSAGE_TYPE,
   STATUS_MESSAGE_TYPE,
@@ -18,6 +19,7 @@ function mapExternalType(type: unknown): ProcessProCommandName | 'ping' | null {
   if (type === START_MESSAGE_TYPE) return 'start';
   if (type === STOP_MESSAGE_TYPE) return 'stop';
   if (type === STATUS_MESSAGE_TYPE) return 'status';
+  if (type === EXPORT_MESSAGE_TYPE) return 'export';
   return null;
 }
 
@@ -54,7 +56,8 @@ export function createProcessProExternalMessageHandler() {
     }
 
     const url = typeof record.url === 'string' ? record.url : sender.url;
-    executeProcessProRecordingCommand(mapped, { requestId, url })
+    const guideId = typeof record.guideId === 'string' ? record.guideId : undefined;
+    executeProcessProRecordingCommand(mapped, { requestId, url, guideId })
       .then(sendResponse)
       .catch((err: unknown) => {
         sendResponse({
@@ -77,6 +80,7 @@ export function registerProcessProBackgroundBridge(): () => void {
     return executeProcessProRecordingCommand(data.command, {
       requestId: data.requestId,
       url: data.url,
+      guideId: data.guideId,
     });
   });
 

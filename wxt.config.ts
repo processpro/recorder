@@ -1,6 +1,23 @@
 import { defineConfig } from "wxt";
+import type { PluginOption } from "vite";
 import tailwindcss from "@tailwindcss/vite";
 import { getExternallyConnectableMatches } from "./src/core/processpro/origins";
+
+/** Escape non-ASCII in bundled JS so Chrome content-script UTF-8 checks pass. */
+function asciiContentScriptsPlugin(): PluginOption {
+  return {
+    name: "processpro-ascii-content-scripts",
+    generateBundle(_options, bundle) {
+      for (const fileName in bundle) {
+        const chunk = bundle[fileName];
+        if (chunk.type !== "chunk") continue;
+        chunk.code = chunk.code.replace(/[^\x00-\x7F]/g, (ch) =>
+          Array.from(ch, (c) => `\\u${c.charCodeAt(0).toString(16).padStart(4, "0")}`).join(""),
+        );
+      }
+    },
+  };
+}
 
 export default defineConfig({
   modules: ["@wxt-dev/module-react", "@wxt-dev/i18n/module"],
@@ -25,7 +42,13 @@ export default defineConfig({
     '@': 'src',
   },
   vite: () => ({
-    plugins: [tailwindcss()],
+    plugins: [tailwindcss(), asciiContentScriptsPlugin()],
+    // Chrome content scripts reject some Unicode code points (e.g. U+FFFF) even when
+    // the file is valid UTF-8. Force ASCII escapes so Load unpacked succeeds.
+    // See https://github.com/wxt-dev/wxt/issues/353
+    esbuild: {
+      charset: 'ascii',
+    },
   }),
   hooks: {
     'build:manifestGenerated': (wxt, manifest) => {
