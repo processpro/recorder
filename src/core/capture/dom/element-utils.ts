@@ -46,6 +46,8 @@ export function isMimikElement(el: Element): boolean {
 }
 
 export function getFieldValue(el: HTMLElement): string {
+  // Never persist password field values — screenshots may still show them; use Smart Blur.
+  if (el instanceof HTMLInputElement && el.type === 'password') return '';
   if (el instanceof HTMLInputElement || el instanceof HTMLTextAreaElement) return el.value;
   if (el.isContentEditable) return el.textContent?.trim() ?? '';
   return '';

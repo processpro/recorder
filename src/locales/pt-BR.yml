@@ -4,7 +4,7 @@ meta:
 app:
   name: ProcessPro Recorder
   store_title: "ProcessPro Recorder: guias passo a passo, tutoriais e prints"
-  description: Capture qualquer tarefa do navegador em um guia passo a passo com prints. Local, código aberto, com sua própria chave de IA.
+  description: Grave fluxos do navegador como guias passo a passo. Edite, borre, exporte ou envie ao ProcessPro. IA opcional (sua chave).
 
 common:
   loading: Carregando...
@@ -86,7 +86,7 @@ settings:
   saveSettings: Salvar ajustes
   saved: Salvo
   smartBlur: Desfoque inteligente
-  privacyNotice: Sua chave API fica salva no navegador e só é enviada pro provedor de IA que você escolher. Nada mais sai daqui.
+  privacyNotice: Guias e capturas ficam no seu navegador até você exportar ou enviar ao ProcessPro. A IA opcional usa sua chave de API no provedor escolhido. Veja a política de privacidade.
   bugReport: "Achou um bug? Reporta no GitHub"
   starCtaTitle: "Curtiu o ProcessPro Recorder?"
   starCtaMessage: Uma estrela no GitHub ajuda outras pessoas a descobrir o ProcessPro Recorder e nos dá aquela motivação!

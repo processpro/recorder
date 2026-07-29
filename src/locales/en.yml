@@ -4,7 +4,7 @@ meta:
 app:
   name: ProcessPro Recorder
   store_title: "ProcessPro Recorder: Step-by-Step Guides, Tutorials & Screenshots"
-  description: Auto-capture any browser workflow into a step-by-step guide with screenshots. Local-first, bring your own AI key.
+  description: Record browser workflows as step-by-step guides with screenshots. Edit, blur, export, or send to ProcessPro. Optional BYOK AI.
 
 common:
   loading: Loading...
@@ -86,7 +86,7 @@ settings:
   saveSettings: Save Settings
   saved: Saved
   smartBlur: Smart Blur
-  privacyNotice: Your API key is stored locally and only sent to the selected AI provider. No data leaves your browser otherwise.
+  privacyNotice: "Guides and screenshots stay in your browser until you export or send them to ProcessPro. Optional AI uses your API key with the provider you choose. See the privacy policy for details."
   bugReport: "Found a bug? Report it on GitHub"
   starCtaTitle: "Like what you see?"
   starCtaMessage: A GitHub star helps others find ProcessPro Recorder and keeps us motivated!

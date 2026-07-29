@@ -93,8 +93,10 @@ describe('extractDomain', () => {
 
 describe('formatDate', () => {
   it('returns a formatted date string', () => {
-    const ts = new Date('2025-03-15T12:00:00Z').getTime();
-    const result = formatDate(ts);
+    // Use local calendar components so the assertion is timezone-stable
+    // (UTC noon on the 15th is already the 16th in UTC+12).
+    const date = new Date(2025, 2, 15, 12, 0, 0);
+    const result = formatDate(date.getTime());
     expect(result).toContain('2025');
     expect(result).toContain('15');
   });

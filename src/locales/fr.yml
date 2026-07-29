@@ -4,7 +4,7 @@ meta:
 app:
   name: ProcessPro Recorder
   store_title: "ProcessPro Recorder : guides pas-à-pas, tutoriels et captures"
-  description: "Transformez toute tâche dans le navigateur en guide pas-à-pas avec captures. Local, open source, avec votre propre clé IA."
+  description: "Enregistrez des workflows navigateur en guides pas-à-pas. Modifiez, floutez, exportez ou envoyez vers ProcessPro. IA optionnelle."
 
 common:
   loading: "Chargement..."
@@ -86,7 +86,7 @@ settings:
   saveSettings: "Enregistrer"
   saved: "Enregistré"
   smartBlur: Flou intelligent
-  privacyNotice: "Votre clé API reste dans votre navigateur et n'est envoyée qu'au fournisseur IA choisi. Rien d'autre ne sort d'ici."
+  privacyNotice: "Les guides et captures restent dans votre navigateur jusqu'à export ou envoi vers ProcessPro. L'IA optionnelle utilise votre clé API chez le fournisseur choisi. Voir la politique de confidentialité."
   bugReport: "Un bug ? Signalez-le sur GitHub"
   starCtaTitle: "Vous aimez ProcessPro Recorder ?"
   starCtaMessage: "Une étoile sur GitHub nous aide beaucoup et permet à d'autres de découvrir ProcessPro Recorder !"

@@ -65,9 +65,10 @@ export default defineConfig({
       name: "__MSG_app_store_title__",
       description: "__MSG_app_description__",
       default_locale: "en",
+      // Note: activeTab is intentionally omitted — tabs + host_permissions already
+      // cover capture/scripting while recording; activeTab alone cannot replace <all_urls>.
       permissions: [
         "storage",
-        "activeTab",
         "tabs",
         "scripting",
         "unlimitedStorage",
