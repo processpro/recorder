@@ -167,37 +167,13 @@ exportMenu:
   pdf: PDF
 
 onboarding:
-  welcomeBadge: Bem-vindo
-  welcomeTitle: "ProcessPro Recorder instalado!"
-  welcomeMessage: "Em poucos passos você vai poder capturar fluxos de trabalho e gerar guias automáticos. Sem conta, sem cadastro \u2014 tudo fica no seu navegador."
-  getStarted: Bora começar
-  aiStepLabel: Passo 1 de 3
-  aiTitle: Descrições com IA
-  aiMessage: Conecta sua chave API pra ter descrições dos passos geradas por IA. É opcional e dá pra mudar depois nos ajustes.
-  aiGenerated: Gerado por IA
-  aiGeneratedDescription: Descrição gerada por IA
-  blurStepLabel: Passo 2 de 3
-  blurTitle: Desfoque inteligente
-  blurMessage: Desfoca automaticamente dados sensíveis nas capturas. Escolha quais padrões ativar.
-  screenshotPreview: Pré-visualização
-  notEnabled: Não ativado
-  categoriesProtected: "$1 categorias protegidas"
-  pinStepLabel: Passo 3 de 3
-  pinTitle: Fixa o ProcessPro Recorder
-  pinMessage: Fixa a extensão na barra pra ter acesso rápido. Clica no ícone de quebra-cabeça no Chrome e fixa o ProcessPro Recorder.
-  pinStep1Title: Clica no ícone de quebra-cabeça
-  pinStep1Sub: Lá em cima à direita na barra do navegador
-  pinStep2Title: Acha o ProcessPro Recorder
-  pinStep2Sub: No menu de extensões
-  pinStep3Title: Clica no pin
-  pinStep3Sub: O ProcessPro Recorder vai aparecer na sua barra
-  pinScreenshotAlt: Fixar extensão ProcessPro Recorder
-  doneTitle: "Tudo pronto!"
-  doneMessage: "O ProcessPro Recorder tá pronto pra capturar. Clica em \"Começar a capturar\" na extensão pra gravar seu primeiro guia."
-  featureAutoCapture: Captura automática
-  featureAIDescriptions: Descrições com IA
-  featureSmartBlur: Desfoque inteligente
-  openMimik: Abrir ProcessPro Recorder
+  statusBadge: Instalado
+  installedTitle: ProcessPro Recorder está instalado
+  installedMessage: O complemento do navegador está pronto. Você pode fechar esta aba e voltar ao ProcessPro para iniciar a gravação.
+  nextStepsTitle: O que fazer em seguida
+  nextStepsMessage: Volte ao ProcessPro e use AI Tools ou Screen Recorder para capturar seu fluxo. Não inicie a gravação por esta janela da extensão.
+  closeTab: Fechar esta aba
+  footerNote: Se esta aba não fechar automaticamente, feche-a manualmente e continue no ProcessPro.
 
 steps:
   pressKey: "Pressionar $1 em $2"

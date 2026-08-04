@@ -167,37 +167,13 @@ exportMenu:
   pdf: PDF
 
 onboarding:
-  welcomeBadge: Welcome
-  welcomeTitle: "You've successfully installed ProcessPro Recorder!"
-  welcomeMessage: "With just a few steps, you'll be ready to auto-capture browser workflows and generate step-by-step guides. No account needed \u2014 everything stays in your browser."
-  getStarted: Get started
-  aiStepLabel: Step 1 of 3
-  aiTitle: AI Descriptions
-  aiMessage: Connect your own API key to get AI-generated step descriptions. This is optional and can be changed later in settings.
-  aiGenerated: AI generated
-  aiGeneratedDescription: AI-generated description
-  blurStepLabel: Step 2 of 3
-  blurTitle: Smart Blur
-  blurMessage: Automatically blur sensitive information in screenshots. Choose which patterns to detect.
-  screenshotPreview: Screenshot preview
-  notEnabled: Not enabled
-  categoriesProtected: "$1 categories protected"
-  pinStepLabel: Step 3 of 3
-  pinTitle: Pin ProcessPro Recorder
-  pinMessage: Pin the extension to your toolbar for quick access. Click the puzzle icon in Chrome, then pin ProcessPro Recorder.
-  pinStep1Title: Click the puzzle icon
-  pinStep1Sub: In the top-right of your browser toolbar
-  pinStep2Title: Find ProcessPro Recorder
-  pinStep2Sub: In the extensions dropdown
-  pinStep3Title: Click the pin icon
-  pinStep3Sub: ProcessPro Recorder will appear in your toolbar
-  pinScreenshotAlt: Pin ProcessPro Recorder extension
-  doneTitle: "You're all set!"
-  doneMessage: "ProcessPro Recorder is ready to capture your workflows. Click \"Start Capture\" in the extension to record your first guide."
-  featureAutoCapture: Auto-capture
-  featureAIDescriptions: AI descriptions
-  featureSmartBlur: Smart blur
-  openMimik: Open ProcessPro Recorder
+  statusBadge: Installed
+  installedTitle: ProcessPro Recorder is installed
+  installedMessage: The browser add-in is ready. You can close this tab and return to ProcessPro to start recording.
+  nextStepsTitle: What to do next
+  nextStepsMessage: Go back to ProcessPro and use AI Tools or Screen Recorder to capture your workflow. Do not start recording from this extension window.
+  closeTab: Close this tab
+  footerNote: If this tab does not close automatically, close it manually and continue in ProcessPro.
 
 steps:
   pressKey: "Press $1 on $2"

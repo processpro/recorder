@@ -167,37 +167,13 @@ exportMenu:
   pdf: PDF
 
 onboarding:
-  welcomeBadge: Bienvenue
-  welcomeTitle: "ProcessPro Recorder est installé !"
-  welcomeMessage: "En quelques étapes, vous pourrez capturer vos parcours navigateur et générer des guides automatiquement. Pas de compte nécessaire — tout reste dans votre navigateur."
-  getStarted: "C'est parti"
-  aiStepLabel: "Étape 1 sur 3"
-  aiTitle: Descriptions IA
-  aiMessage: "Connectez votre clé API pour obtenir des descriptions générées par IA. C'est facultatif et modifiable dans les paramètres."
-  aiGenerated: "Généré par IA"
-  aiGeneratedDescription: "Description générée par IA"
-  blurStepLabel: "Étape 2 sur 3"
-  blurTitle: Flou intelligent
-  blurMessage: "Floutez automatiquement les données sensibles dans vos captures. Choisissez quels types de données détecter."
-  screenshotPreview: "Aperçu"
-  notEnabled: "Non activé"
-  categoriesProtected: "$1 catégories protégées"
-  pinStepLabel: "Étape 3 sur 3"
-  pinTitle: "Épinglez ProcessPro Recorder"
-  pinMessage: "Épinglez l'extension dans votre barre d'outils. Cliquez sur l'icône puzzle dans Chrome, puis épinglez ProcessPro Recorder."
-  pinStep1Title: "Cliquez sur l'icône puzzle"
-  pinStep1Sub: "En haut à droite de votre navigateur"
-  pinStep2Title: Trouvez ProcessPro Recorder
-  pinStep2Sub: "Dans le menu des extensions"
-  pinStep3Title: "Cliquez sur l'épingle"
-  pinStep3Sub: "ProcessPro Recorder apparaîtra dans votre barre"
-  pinScreenshotAlt: "Épingler ProcessPro Recorder"
-  doneTitle: "Tout est prêt !"
-  doneMessage: "ProcessPro Recorder est prêt à capturer. Cliquez sur « Lancer la capture » pour enregistrer votre premier guide."
-  featureAutoCapture: Capture automatique
-  featureAIDescriptions: Descriptions IA
-  featureSmartBlur: Flou intelligent
-  openMimik: Ouvrir ProcessPro Recorder
+  statusBadge: Installé
+  installedTitle: ProcessPro Recorder est installé
+  installedMessage: L'extension navigateur est prête. Vous pouvez fermer cet onglet et revenir à ProcessPro pour démarrer l'enregistrement.
+  nextStepsTitle: Prochaine étape
+  nextStepsMessage: Retournez dans ProcessPro et utilisez AI Tools ou Screen Recorder pour capturer votre parcours. Ne démarrez pas l'enregistrement depuis cette fenêtre d'extension.
+  closeTab: Fermer cet onglet
+  footerNote: Si cet onglet ne se ferme pas automatiquement, fermez-le manuellement et continuez dans ProcessPro.
 
 steps:
   pressKey: "Appuyer sur $1 dans $2"

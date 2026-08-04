@@ -1,6 +1,6 @@
 {
   "name": "processpro-recorder",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "ProcessPro Recorder — capture browser workflows as step-by-step guides with screenshots.",
   "main": "index.js",
   "packageManager": "pnpm@10.32.1",

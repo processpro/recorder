@@ -72,9 +72,9 @@ export default defineBackground(() => {
       // API-permission resolution table that captureVisibleTab consults.
       // Result: permissions.contains() returns true but captureVisibleTab
       // silently rejects. Removing the permission here forces a clean state
-      // so the user-gesture permissions.request() in onboarding's "Get
-      // Started" / sidepanel's "Start Recording" goes through the working
-      // re-grant code path. Remove this when Mozilla ships:
+      // so the user-gesture permissions.request() in sidepanel's
+      // "Start Recording" goes through the working re-grant code path.
+      // Remove this when Mozilla ships:
       // https://bugzilla.mozilla.org/show_bug.cgi?id=1758306
       try {
         await browser.permissions.remove({ origins: ['<all_urls>'] });
